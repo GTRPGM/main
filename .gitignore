@@ -9,7 +9,6 @@ Thumbs.db
 *.swo
 
 # 빌드 결과물 및 바이너리 무시
-bin/
 build/
 dist/
 *.o
@@ -26,3 +25,5 @@ logs/
 tmp/
 temp/
 *.tmp
+
+.envrc
