@@ -1,0 +1,28 @@
+# 운영체제 관련 파일 무시
+.DS_Store
+Thumbs.db
+
+# IDE 및 에디터 설정 무시
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 빌드 결과물 및 바이너리 무시
+bin/
+build/
+dist/
+*.o
+*.exe
+*.dll
+*.so
+*.dylib
+
+# 로그 파일 무시
+*.log
+logs/
+
+# 임시 파일 무시
+tmp/
+temp/
+*.tmp
