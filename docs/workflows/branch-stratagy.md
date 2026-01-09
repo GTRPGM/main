@@ -7,22 +7,23 @@
 
 ## 0. 요약
 
-- `main`, `dev` 제외 1브랜치 1인 - 공유 브랜치는 별도 명시
-- 기능 개발 완료 시 feature/\* → dev 로 PR 병합
-- 마이너 버전 완료 시 dev → main 으로 PR 병합
-- 병합 이후 반드시 브랜치 동기화 수행
+- 모든 작업은 이슈 기반으로 진행하며, 브랜치 이름에 이슈 번호를 포함합니다.
+- `main`, `dev` 제외 1브랜치 1인 원칙이며, 공유 브랜치는 별도 명시합니다.
+- 기능 개발 완료 시 `feat/{issue-number}-*` → `dev` 로 PR 병합합니다.
+- 마이너 버전 완료 시 `dev` → `main` 으로 PR 병합합니다.
+- 병합 이후 반드시 브랜치 동기화 수행합니다.
 
 ```text
 # Merge Flow (병합 흐름)
-main   <-[ PR | Squash ]-   dev   <--[ PR | Merge ]--   feature/*
+main   <-[ PR | Squash ]-   dev   <--[ PR | Merge ]--   feat/{issue-number}-*
 
 # Sync Flow (동기화 흐름)
-main   --[ PR | Merge ]->   dev   --[ local merge ]->   feature/*
+main   --[ PR | Merge ]->   dev   --[ local merge ]->   feat/{issue-number}-*
 ```
 
 - main: 안정 브랜치
 - dev: 통합 브랜치
-- feature/\*: 작업 브랜치
+- feat, docs, fix: 작업 브랜치
 
 ---
 
@@ -32,7 +33,7 @@ main   --[ PR | Merge ]->   dev   --[ local merge ]->   feature/*
 
 - 항상 배포 가능한 상태를 유지합니다.
 - 직접 커밋하지 않습니다.
-- feature/\* 브랜치는 main으로 직접 병합하지 않습니다.
+- 작업 브랜치는 main으로 직접 병합하지 않습니다. (`hotfix` 제외)
 - `dev` 브랜치에서만 PR을 통해 **Squash Merge**로만 병합합니다.
   - `main` 브랜치는 배포/보여주는 대상이기에 깔끔하게 관리하고자 합니다.
   - 레포 관리자에 의해 사전 공지하고, dev의 안정성을 확인한다음 병합합니다.
@@ -46,7 +47,7 @@ main   --[ PR | Merge ]->   dev   --[ local merge ]->   feature/*
 ### dev
 
 - 기능 통합 및 검증을 위한 브랜치입니다.
-- 모든 `feature`/`docs` 브랜치는 `dev`를 기준으로 생성합니다.
+- 모든 작업 브랜치(`feat`, `docs`, `fix`)는 `dev`를 기준으로 생성합니다.
 - 직접 커밋하지 않으며 PR을 통해 **Merge Commit**로 병합합니다.
   - 필요 시 squash 병합을 사용할 수 있으나, 사유를 PR에 명시합니다.
   - 병합 전 반드시 한명 이상의 팀원과 리뷰합니다.
@@ -64,67 +65,70 @@ main   --[ PR | Merge ]->   dev   --[ local merge ]->   feature/*
 예시:
 
 ```text
-docs/scratch-co
+docs/15-scratch-co
 ```
 
 ---
 
 ## 3. 작업 브랜치
 
-### feature/\*
+- **모든 작업 브랜치는 작업을 시작할 때 생성한 issue 번호를 반드시 이름에 포함해야 합니다.**
+
+---
+
+### feat/{issue-number}-{feature-name}
 
 - 새로운 기능, 설정을 위한 브랜치입니다.
 - `dev` 브랜치에서 분기합니다.
 - 작업 완료 후 `dev`로 PR을 생성합니다.
+- 반드시 **_이슈 넘버를 PR 메시지에 포함_** 시켜주세요.
 
 예시:
 
 ```text
-feature/ci
-feature/docs-setup
-feature/rule-graph
+feat/11-new-login-page
+feat/12-rule-graph-view
 ```
 
-### docs/\*
+### docs/{issue-number}-{document-name}
 
 - 문서 변경을 위한 브랜치입니다.
 - `dev` 브랜치에서 분기합니다.
 - 작업 완료 후 `dev`로 PR을 생성합니다.
+- 반드시 **_이슈 넘버를 PR 메시지에 포함_** 시켜주세요.
 
 예시:
 
 ```text
-docs/workflow
-docs/tutorial
+docs/13-update-readme
+docs/14-add-workflow-guide
 ```
 
-### fix/{issue number}-{issue name}
+### fix/{issue-number}-{issue-name}
 
 - 버그 수정을 위한 브랜치입니다.
-- 버그가 생길 때, issue 번호로 생성합니다.
 - `dev` 브랜치에서 분기합니다.
-  - 작업 완료 후 `dev`로 PR을 생성합니다.
-  - 반드시 **_이슈 넘버를 PR 메시지에 포함_** 시켜주세요.
+- 작업 완료 후 `dev`로 PR을 생성합니다.
+- 반드시 **_이슈 넘버를 PR 메시지에 포함_** 시켜주세요.
 
 예시:
 
 ```text
-fix/22-type_error
+fix/22-type-error
 ```
 
 PR 예시:
 
 ```text
-fix: type error from somthing(#22)
+fix: type error from something(#22)
 ```
 
 ---
 
-### hotfix/{issue number}-{issue name}
+### hotfix/{issue-number}-{issue-name}
 
 - 예외 브랜치입니다.
 - `main`브랜치에서 발견된 치명적인 버그 수정을 위한 브랜치입니다.
-- 버그가 생길 때, issue 번호로 생성합니다.
 - `main` 브랜치에서 분기합니다.
   - 작업 완료 후 `main`로 PR을 생성합니다.
   - 반드시 **Squash Merge**로 병합합니다.
@@ -132,13 +136,13 @@ fix: type error from somthing(#22)
   - 병합 이후 `dev`에 **Merge Commit**로 반영합니다.
 
 ```text
-hotfix/22-type_error
+hotfix/23-critical-error
 ```
 
 PR 예시:
 
 ```text
-hotfix: type error from somthing(#22)
+hotfix: type error from something(#23)
 ```
 
 ---
@@ -160,7 +164,7 @@ hotfix: type error from somthing(#22)
 ## 4. 히스토리 관리 원칙
 
 - `main`, `dev` 브랜치에서는 rebase, force push 등 히스토리 수정을 금지합니다.
-- 개인 작업 브랜치(`feature/*`)에서만 히스토리 수정을 허용합니다.
+- 개인 작업 브랜치(예: `feat/*`)에서만 히스토리 수정을 허용합니다.
 - 실수한 커밋은 새로운 커밋으로 수정하거나 PR에서 정리합니다.
 
 ---
