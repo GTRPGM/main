@@ -1,7 +1,7 @@
 name: Chore - 잡일 처리
 description: 환경 설정, 파일 정리 등 기타 해야할 일들
 title: "[Chore] "
-type: "Chore"
+type: Chore
 body:
   - type: textarea
     attributes:

@@ -1,7 +1,7 @@
 name: Fix - 버그 수정
 description: 버그 상황을 재현하고 수정
 title: "[Fix] "
-type: "Fix"
+type: Fix
 body:
   - type: textarea
     attributes:

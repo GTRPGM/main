@@ -1,7 +1,7 @@
 name: Docs - 문서 수정
 description: 문서 수정 및 보완
 title: "[Docs] "
-type: "Docs"
+type: Docs
 body:
   - type: textarea
     attributes:

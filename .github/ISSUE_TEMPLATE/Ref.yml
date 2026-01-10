@@ -1,7 +1,7 @@
 name: Ref - 리팩토링
 description: 코드 스타일, 이름변경, 구조 변경 등 기능 변경이 없는 코드작업
 title: "[Ref] "
-type: "Ref"
+type: Ref
 body:
   - type: textarea
     attributes:

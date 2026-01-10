@@ -1,7 +1,7 @@
 name: Test - 테스트
 description: 기능, 시스템의 테스트 작업
 title: "[Test] "
-type: "Test"
+type: Test
 body:
   - type: textarea
     attributes:

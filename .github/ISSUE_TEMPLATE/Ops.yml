@@ -1,7 +1,7 @@
 name: Ops - 운영 작업
 description: 배포, 자동화 등 운영 관련 작업
 title: "[Ops] "
-type: "Ops"
+type: Ops
 body:
   - type: textarea
     attributes:
