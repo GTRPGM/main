@@ -1,4 +1,5 @@
 # .pre-commit-config.yaml
+exclude: scratch/
 
 repos:
   # 1. Standard Hooks (기본적인 파일 위생 및 문법 검사)
